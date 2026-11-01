@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { isAdmin, requireUser } from "@/lib/auth/session";
-import { findCards } from "@/lib/cards/search";
+import { searchCatalog } from "@/lib/cards/catalog";
 import { db } from "@/lib/db";
 import { decks } from "@/lib/db/schema";
 import { parseShareJson } from "@/lib/share/schema";
@@ -76,7 +76,7 @@ export async function searchCardsAction(query: string): Promise<CardSearchHit[]>
   await requireUser();
   const q = z.string().trim().min(1).max(100).safeParse(query);
   if (!q.success) return [];
-  const rows = await findCards(q.data, 24);
+  const rows = searchCatalog(q.data, 24);
   return rows.map((c) => ({
     id: c.id,
     code: c.publicCode,

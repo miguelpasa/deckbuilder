@@ -12,7 +12,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx scripts/seed.ts",
-    "riot:sync": "tsx scripts/sync.ts"
+    "riot:sync": "tsx scripts/sync.ts",
+    "riot:export": "tsx scripts/export-cards.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
