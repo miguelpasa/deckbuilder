@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+.neon
+.next
+node_modules
+.claude
