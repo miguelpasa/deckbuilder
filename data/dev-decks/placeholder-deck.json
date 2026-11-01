@@ -1,0 +1,111 @@
+{
+  "format": "riftbound-deck",
+  "version": 1,
+  "name": "[DEV] Placeholder Deck",
+  "description": "Development deck built only from placeholder DEV-* cards. Not a real decklist.",
+  "source": "META",
+  "eventName": "Development data",
+  "legend": "DEV-001",
+  "cards": [
+    {
+      "code": "DEV-001",
+      "qty": 1,
+      "zone": "LEGEND"
+    },
+    {
+      "code": "DEV-003",
+      "qty": 1,
+      "zone": "CHAMPION"
+    },
+    {
+      "code": "DEV-006",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-009",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-012",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-015",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-018",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-021",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-024",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-025",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-028",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-031",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-034",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-035",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-038",
+      "qty": 3,
+      "zone": "MAIN"
+    },
+    {
+      "code": "DEV-041",
+      "qty": 6,
+      "zone": "RUNE"
+    },
+    {
+      "code": "DEV-044",
+      "qty": 6,
+      "zone": "RUNE"
+    },
+    {
+      "code": "DEV-047",
+      "qty": 1,
+      "zone": "BATTLEFIELD"
+    },
+    {
+      "code": "DEV-048",
+      "qty": 1,
+      "zone": "BATTLEFIELD"
+    },
+    {
+      "code": "DEV-049",
+      "qty": 1,
+      "zone": "BATTLEFIELD"
+    }
+  ]
+}

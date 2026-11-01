@@ -1,0 +1,1409 @@
+{
+  "game": "riftbound-dev-placeholder",
+  "version": "0.0.0-dev",
+  "lastUpdated": "2026-01-01T00:00:00Z",
+  "sets": [
+    {
+      "id": "DEV",
+      "name": "Development Placeholder Set",
+      "cards": [
+        {
+          "id": "dev-001",
+          "collectorNumber": 1,
+          "set": "DEV",
+          "name": "Placeholder Legend A",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Legend",
+          "rarity": "Rare",
+          "faction": "Fury/Body",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "legend"
+          ],
+          "subtitle": "Test Legend",
+          "effect": ""
+        },
+        {
+          "id": "dev-002",
+          "collectorNumber": 2,
+          "set": "DEV",
+          "name": "Placeholder Legend B",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Legend",
+          "rarity": "Rare",
+          "faction": "Calm/Mind",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "legend"
+          ],
+          "subtitle": "Test Legend",
+          "effect": ""
+        },
+        {
+          "id": "dev-003",
+          "collectorNumber": 3,
+          "set": "DEV",
+          "name": "Placeholder Champion A",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Fury",
+          "stats": {
+            "energy": 4,
+            "might": 5,
+            "cost": 4,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-004",
+          "collectorNumber": 4,
+          "set": "DEV",
+          "name": "Placeholder Champion B",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Calm",
+          "stats": {
+            "energy": 5,
+            "might": 5,
+            "cost": 5,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-005",
+          "collectorNumber": 5,
+          "set": "DEV",
+          "name": "Placeholder Champion C",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Mind",
+          "stats": {
+            "energy": 6,
+            "might": 5,
+            "cost": 6,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-006",
+          "collectorNumber": 6,
+          "set": "DEV",
+          "name": "Placeholder Champion D",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Body",
+          "stats": {
+            "energy": 4,
+            "might": 5,
+            "cost": 4,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-007",
+          "collectorNumber": 7,
+          "set": "DEV",
+          "name": "Placeholder Champion E",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Chaos",
+          "stats": {
+            "energy": 5,
+            "might": 5,
+            "cost": 5,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-008",
+          "collectorNumber": 8,
+          "set": "DEV",
+          "name": "Placeholder Champion F",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Champion Unit",
+          "rarity": "Epic",
+          "faction": "Order",
+          "stats": {
+            "energy": 6,
+            "might": 5,
+            "cost": 6,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "champion"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-009",
+          "collectorNumber": 9,
+          "set": "DEV",
+          "name": "Placeholder Unit 1",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 1,
+            "might": 1,
+            "cost": 1,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-010",
+          "collectorNumber": 10,
+          "set": "DEV",
+          "name": "Placeholder Unit 2",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 2,
+            "might": 2,
+            "cost": 2,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-011",
+          "collectorNumber": 11,
+          "set": "DEV",
+          "name": "Placeholder Unit 3",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 3,
+            "might": 3,
+            "cost": 3,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-012",
+          "collectorNumber": 12,
+          "set": "DEV",
+          "name": "Placeholder Unit 4",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 4,
+            "might": 4,
+            "cost": 4,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-013",
+          "collectorNumber": 13,
+          "set": "DEV",
+          "name": "Placeholder Unit 5",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Chaos",
+          "stats": {
+            "energy": 5,
+            "might": 5,
+            "cost": 5,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-014",
+          "collectorNumber": 14,
+          "set": "DEV",
+          "name": "Placeholder Unit 6",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Order",
+          "stats": {
+            "energy": 6,
+            "might": 1,
+            "cost": 6,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-015",
+          "collectorNumber": 15,
+          "set": "DEV",
+          "name": "Placeholder Unit 7",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 1,
+            "might": 2,
+            "cost": 1,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-016",
+          "collectorNumber": 16,
+          "set": "DEV",
+          "name": "Placeholder Unit 8",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 2,
+            "might": 3,
+            "cost": 2,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-017",
+          "collectorNumber": 17,
+          "set": "DEV",
+          "name": "Placeholder Unit 9",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 3,
+            "might": 4,
+            "cost": 3,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-018",
+          "collectorNumber": 18,
+          "set": "DEV",
+          "name": "Placeholder Unit 10",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 4,
+            "might": 5,
+            "cost": 4,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-019",
+          "collectorNumber": 19,
+          "set": "DEV",
+          "name": "Placeholder Unit 11",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Chaos",
+          "stats": {
+            "energy": 5,
+            "might": 1,
+            "cost": 5,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-020",
+          "collectorNumber": 20,
+          "set": "DEV",
+          "name": "Placeholder Unit 12",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Order",
+          "stats": {
+            "energy": 6,
+            "might": 2,
+            "cost": 6,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-021",
+          "collectorNumber": 21,
+          "set": "DEV",
+          "name": "Placeholder Unit 13",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 1,
+            "might": 3,
+            "cost": 1,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-022",
+          "collectorNumber": 22,
+          "set": "DEV",
+          "name": "Placeholder Unit 14",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 2,
+            "might": 4,
+            "cost": 2,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-023",
+          "collectorNumber": 23,
+          "set": "DEV",
+          "name": "Placeholder Unit 15",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 3,
+            "might": 5,
+            "cost": 3,
+            "power": 0
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-024",
+          "collectorNumber": 24,
+          "set": "DEV",
+          "name": "Placeholder Unit 16",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Unit",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 4,
+            "might": 1,
+            "cost": 4,
+            "power": 1
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-025",
+          "collectorNumber": 25,
+          "set": "DEV",
+          "name": "Placeholder Spell 1",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 1,
+            "might": null,
+            "cost": 1,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-026",
+          "collectorNumber": 26,
+          "set": "DEV",
+          "name": "Placeholder Spell 2",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 2,
+            "might": null,
+            "cost": 2,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-027",
+          "collectorNumber": 27,
+          "set": "DEV",
+          "name": "Placeholder Spell 3",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 3,
+            "might": null,
+            "cost": 3,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-028",
+          "collectorNumber": 28,
+          "set": "DEV",
+          "name": "Placeholder Spell 4",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 4,
+            "might": null,
+            "cost": 4,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-029",
+          "collectorNumber": 29,
+          "set": "DEV",
+          "name": "Placeholder Spell 5",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Chaos",
+          "stats": {
+            "energy": 1,
+            "might": null,
+            "cost": 1,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-030",
+          "collectorNumber": 30,
+          "set": "DEV",
+          "name": "Placeholder Spell 6",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Order",
+          "stats": {
+            "energy": 2,
+            "might": null,
+            "cost": 2,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-031",
+          "collectorNumber": 31,
+          "set": "DEV",
+          "name": "Placeholder Spell 7",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 3,
+            "might": null,
+            "cost": 3,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-032",
+          "collectorNumber": 32,
+          "set": "DEV",
+          "name": "Placeholder Spell 8",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 4,
+            "might": null,
+            "cost": 4,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-033",
+          "collectorNumber": 33,
+          "set": "DEV",
+          "name": "Placeholder Spell 9",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 1,
+            "might": null,
+            "cost": 1,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-034",
+          "collectorNumber": 34,
+          "set": "DEV",
+          "name": "Placeholder Spell 10",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Spell",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 2,
+            "might": null,
+            "cost": 2,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": "Deal 1 test damage."
+        },
+        {
+          "id": "dev-035",
+          "collectorNumber": 35,
+          "set": "DEV",
+          "name": "Placeholder Gear 1",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": 1,
+            "might": null,
+            "cost": 1,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-036",
+          "collectorNumber": 36,
+          "set": "DEV",
+          "name": "Placeholder Gear 2",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": 2,
+            "might": null,
+            "cost": 2,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-037",
+          "collectorNumber": 37,
+          "set": "DEV",
+          "name": "Placeholder Gear 3",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": 3,
+            "might": null,
+            "cost": 3,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-038",
+          "collectorNumber": 38,
+          "set": "DEV",
+          "name": "Placeholder Gear 4",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": 1,
+            "might": null,
+            "cost": 1,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-039",
+          "collectorNumber": 39,
+          "set": "DEV",
+          "name": "Placeholder Gear 5",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Chaos",
+          "stats": {
+            "energy": 2,
+            "might": null,
+            "cost": 2,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-040",
+          "collectorNumber": 40,
+          "set": "DEV",
+          "name": "Placeholder Gear 6",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Gear",
+          "rarity": "Common",
+          "faction": "Order",
+          "stats": {
+            "energy": 3,
+            "might": null,
+            "cost": 3,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-041",
+          "collectorNumber": 41,
+          "set": "DEV",
+          "name": "Test Rune (Fury)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Fury",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-042",
+          "collectorNumber": 42,
+          "set": "DEV",
+          "name": "Test Rune (Calm)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Calm",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-043",
+          "collectorNumber": 43,
+          "set": "DEV",
+          "name": "Test Rune (Mind)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Mind",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-044",
+          "collectorNumber": 44,
+          "set": "DEV",
+          "name": "Test Rune (Body)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Body",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-045",
+          "collectorNumber": 45,
+          "set": "DEV",
+          "name": "Test Rune (Chaos)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Chaos",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-046",
+          "collectorNumber": 46,
+          "set": "DEV",
+          "name": "Test Rune (Order)",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Rune",
+          "rarity": "Common",
+          "faction": "Order",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "rune"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-047",
+          "collectorNumber": 47,
+          "set": "DEV",
+          "name": "Placeholder Battlefield 1",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Battlefield",
+          "rarity": "Uncommon",
+          "faction": "",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "battlefield"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-048",
+          "collectorNumber": 48,
+          "set": "DEV",
+          "name": "Placeholder Battlefield 2",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Battlefield",
+          "rarity": "Uncommon",
+          "faction": "",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "battlefield"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-049",
+          "collectorNumber": 49,
+          "set": "DEV",
+          "name": "Placeholder Battlefield 3",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Battlefield",
+          "rarity": "Uncommon",
+          "faction": "",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "battlefield"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-050",
+          "collectorNumber": 50,
+          "set": "DEV",
+          "name": "Placeholder Battlefield 4",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Battlefield",
+          "rarity": "Uncommon",
+          "faction": "",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "battlefield"
+          ],
+          "subtitle": "",
+          "effect": ""
+        },
+        {
+          "id": "dev-051",
+          "collectorNumber": 51,
+          "set": "DEV",
+          "name": "Placeholder Battlefield 5",
+          "description": "Development placeholder card. Not a real card.",
+          "type": "Battlefield",
+          "rarity": "Uncommon",
+          "faction": "",
+          "stats": {
+            "energy": null,
+            "might": null,
+            "cost": null,
+            "power": null
+          },
+          "art": {
+            "thumbnailURL": "",
+            "fullURL": "",
+            "artist": ""
+          },
+          "flavorText": "",
+          "tags": [
+            "placeholder",
+            "battlefield"
+          ],
+          "subtitle": "",
+          "effect": ""
+        }
+      ]
+    }
+  ]
+}
