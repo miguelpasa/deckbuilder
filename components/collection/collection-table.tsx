@@ -6,6 +6,7 @@ import { Fragment, useMemo, useState, useTransition } from "react";
 import { toast } from "sonner";
 
 import { PlaceholderBadge } from "@/components/cards/card-art";
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { QuantityStepper } from "@/components/collection/quantity-stepper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,7 @@ type Group = "none" | "set" | "type";
 type Sort = "code" | "name" | "qty";
 
 const selectClass =
-  "h-9 rounded-md border border-input bg-transparent px-2 text-sm shadow-xs outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30";
+  "h-9 rounded-md border border-input bg-transparent px-2 text-sm text-foreground shadow-xs outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30";
 
 export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] }) {
   const [rows, setRows] = useState(initialRows);
@@ -78,15 +79,15 @@ export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] 
 
   return (
     <div className="space-y-6">
-      <dl className="grid grid-cols-3 gap-3">
+      <dl className="grid grid-cols-3 divide-x divide-border rounded-xl border bg-card">
         {[
           ["Unique cards", stats.uniqueCards],
           ["Total copies", stats.totalCopies],
           ["Foils", stats.foils],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-lg border p-3">
+          <div key={label} className="px-4 py-3">
             <dt className="text-xs text-muted-foreground">{label}</dt>
-            <dd className="text-2xl font-semibold tabular-nums">{value}</dd>
+            <dd className="text-xl font-semibold tabular-nums">{value}</dd>
           </div>
         ))}
       </dl>
@@ -99,7 +100,7 @@ export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] 
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
-        <label className="flex items-center gap-1 text-sm text-muted-foreground">
+        <label className="flex items-center gap-2 text-sm text-muted-foreground">
           Group
           <select className={selectClass} value={group} onChange={(e) => setGroup(e.target.value as Group)}>
             <option value="set">Set</option>
@@ -107,7 +108,7 @@ export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] 
             <option value="none">None</option>
           </select>
         </label>
-        <label className="flex items-center gap-1 text-sm text-muted-foreground">
+        <label className="flex items-center gap-2 text-sm text-muted-foreground">
           Sort
           <select className={selectClass} value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
             <option value="code">Code</option>
@@ -120,44 +121,55 @@ export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] 
       {groups.length === 0 ? (
         <p className="text-sm text-muted-foreground">No cards match your filter.</p>
       ) : (
-        <div className="overflow-x-auto rounded-lg border">
+        <div className="overflow-x-auto rounded-xl border bg-card">
           <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Code</TableHead>
-                <TableHead>Card</TableHead>
-                <TableHead className="hidden sm:table-cell">Type</TableHead>
-                <TableHead>Printing</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead className="w-10" />
+            <TableHeader className="bg-muted/60">
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="px-3 text-xs text-muted-foreground">Code</TableHead>
+                <TableHead className="px-3 text-xs text-muted-foreground">Card</TableHead>
+                <TableHead className="hidden px-3 text-xs text-muted-foreground sm:table-cell">Type</TableHead>
+                <TableHead className="hidden px-3 text-xs text-muted-foreground md:table-cell">Domain</TableHead>
+                <TableHead className="px-3 text-xs text-muted-foreground">Printing</TableHead>
+                <TableHead className="px-3 text-right text-xs text-muted-foreground">Quantity</TableHead>
+                <TableHead className="w-10 px-3">
+                  <span className="sr-only">Remove</span>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {groups.map(([name, list]) => (
                 <Fragment key={name || "all"}>
                   {name && (
-                    <TableRow className="bg-muted/50 hover:bg-muted/50">
-                      <TableCell colSpan={6} className="text-xs font-semibold uppercase tracking-wide">
-                        {name} ({list.reduce((s, r) => s + r.quantity, 0)})
+                    <TableRow className="bg-muted/40 hover:bg-muted/40">
+                      <TableCell colSpan={7} className="px-3 py-2 text-xs font-semibold text-muted-foreground">
+                        {name} <span className="tabular-nums font-normal">({list.reduce((s, r) => s + r.quantity, 0)})</span>
                       </TableCell>
                     </TableRow>
                   )}
                   {list.map((r) => (
-                    <TableRow key={r.printingId}>
-                      <TableCell className="font-mono text-xs">{r.code ?? "-"}</TableCell>
-                      <TableCell>
-                        <Link href={`/cards/${encodeURIComponent(r.code ?? r.cardId)}`} className="font-medium hover:underline">
+                    <TableRow key={r.printingId} className="border-border/60">
+                      <TableCell className="px-3 font-mono text-xs text-muted-foreground">{r.code ?? "-"}</TableCell>
+                      <TableCell className="px-3">
+                        <Link
+                          href={`/cards/${encodeURIComponent(r.code ?? r.cardId)}`}
+                          className="rounded-sm font-medium outline-none transition-colors hover:text-primary hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                        >
                           {r.name}
                         </Link>
                         {r.isPlaceholder && <PlaceholderBadge className="ml-2" />}
                       </TableCell>
-                      <TableCell className="hidden text-muted-foreground sm:table-cell">{r.type ?? "-"}</TableCell>
-                      <TableCell>
-                        <Badge variant={r.variant === "NORMAL" ? "secondary" : "default"}>
-                          {VARIANT_LABEL[r.variant]}
-                        </Badge>
+                      <TableCell className="hidden px-3 text-muted-foreground sm:table-cell">{r.type ?? "-"}</TableCell>
+                      <TableCell className="hidden px-3 md:table-cell">
+                        {r.faction ? <DomainBadge domain={r.faction} /> : <span className="text-muted-foreground">-</span>}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="px-3">
+                        {r.variant === "NORMAL" ? (
+                          <span className="text-muted-foreground">{VARIANT_LABEL[r.variant]}</span>
+                        ) : (
+                          <Badge variant="outline">{VARIANT_LABEL[r.variant]}</Badge>
+                        )}
+                      </TableCell>
+                      <TableCell className="px-3 text-right tabular-nums">
                         <QuantityStepper
                           printingId={r.printingId}
                           quantity={r.quantity}
@@ -165,7 +177,7 @@ export function CollectionTable({ initialRows }: { initialRows: CollectionRow[] 
                           onChange={(n) => setQty(r.printingId, n)}
                         />
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="px-3">
                         <Button
                           type="button"
                           variant="ghost"

@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { CardArt } from "@/components/cards/card-art";
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { OwnedControls } from "@/components/collection/owned-controls";
+import { PageHeader, PageShell, SectionHeading } from "@/components/layout/page";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,7 +18,10 @@ async function Owned({ cardName, printings }: { cardName: string; printings: { i
   if (!user) {
     return (
       <p className="text-sm text-muted-foreground">
-        <Link href="/auth/sign-in" className="underline">
+        <Link
+          href="/auth/sign-in"
+          className="rounded-sm text-foreground underline underline-offset-4 outline-none transition-colors hover:text-primary focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        >
           Sign in
         </Link>{" "}
         to track how many copies you own.
@@ -35,12 +40,12 @@ async function Owned({ cardName, printings }: { cardName: string; printings: { i
   );
 }
 
-function Field({ label, value }: { label: string; value: string | number | null | undefined }) {
+function Field({ label, value, numeric }: { label: string; value: React.ReactNode; numeric?: boolean }) {
   if (value === null || value === undefined || value === "") return null;
   return (
-    <div className="flex justify-between gap-4 border-b py-1.5 text-sm">
+    <div className="flex items-center justify-between gap-4 border-b border-border py-2 text-sm last:border-b-0">
       <dt className="text-muted-foreground">{label}</dt>
-      <dd className="text-right font-medium">{value}</dd>
+      <dd className={numeric ? "text-right font-medium tabular-nums" : "text-right font-medium"}>{value}</dd>
     </div>
   );
 }
@@ -51,79 +56,90 @@ async function CardDetailContent({ params }: { params: Promise<{ code: string }>
   if (!card) notFound();
 
   return (
-    <div className="grid gap-8 md:grid-cols-[minmax(0,280px)_1fr]">
-      <CardArt
-        name={card.name}
-        type={card.type}
-        faction={card.faction}
-        imageUrl={card.fullUrl ?? card.thumbnailUrl}
-        isPlaceholder={card.isPlaceholder}
-        priority
+    <>
+      <PageHeader
+        title={card.name}
+        description={
+          <>
+            <span className="font-mono tabular-nums">{card.publicCode ?? card.id}</span>
+            {card.subtitle && ` · ${card.subtitle}`}
+          </>
+        }
+        actions={
+          <>
+            {card.isPlaceholder && <Badge variant="outline">Development placeholder data</Badge>}
+            <Button asChild variant="outline" size="sm">
+              <Link href="/cards">Back to cards</Link>
+            </Button>
+          </>
+        }
       />
-      <div className="space-y-6">
-        <header className="space-y-1">
-          <p className="font-mono text-sm text-muted-foreground">{card.publicCode ?? card.id}</p>
-          <h1 className="text-3xl font-semibold">{card.name}</h1>
-          {card.subtitle && <p className="text-muted-foreground">{card.subtitle}</p>}
-          {card.isPlaceholder && <Badge variant="outline">Development placeholder data</Badge>}
-        </header>
 
-        <dl className="max-w-md">
-          <Field label="Set" value={`${card.setName} (${card.setId})`} />
-          <Field label="Collector number" value={card.collectorNumber} />
-          <Field label="Type" value={card.type} />
-          <Field label="Domain" value={card.faction} />
-          <Field label="Rarity" value={card.rarity} />
-          <Field label="Energy" value={card.energy} />
-          <Field label="Cost" value={card.cost} />
-          <Field label="Might" value={card.might} />
-          <Field label="Power" value={card.power} />
-          <Field label="Tags" value={card.tags.length ? card.tags.join(", ") : null} />
-          <Field label="Artist" value={card.artist} />
-        </dl>
+      <div className="grid gap-8 md:grid-cols-[minmax(0,280px)_1fr]">
+        <CardArt
+          name={card.name}
+          type={card.type}
+          faction={card.faction}
+          imageUrl={card.fullUrl ?? card.thumbnailUrl}
+          isPlaceholder={card.isPlaceholder}
+          priority
+        />
+        <div className="space-y-8">
+          <dl className="max-w-md rounded-xl border bg-card px-4">
+            <Field label="Set" value={`${card.setName} (${card.setId})`} />
+            <Field label="Collector number" value={card.collectorNumber} numeric />
+            <Field label="Type" value={card.type} />
+            <Field label="Domain" value={card.faction ? <DomainBadge domain={card.faction} /> : null} />
+            <Field label="Rarity" value={card.rarity} />
+            <Field label="Energy" value={card.energy} numeric />
+            <Field label="Cost" value={card.cost} numeric />
+            <Field label="Might" value={card.might} numeric />
+            <Field label="Power" value={card.power} numeric />
+            <Field label="Tags" value={card.tags.length ? card.tags.join(", ") : null} />
+            <Field label="Artist" value={card.artist} />
+          </dl>
 
-        {(card.description || card.effect || card.flavorText) && (
-          <section className="space-y-3">
-            <h2 className="text-lg font-semibold">Card text</h2>
-            {card.description && <p className="whitespace-pre-line">{card.description}</p>}
-            {card.effect && card.effect !== card.description && (
-              <p className="whitespace-pre-line">{card.effect}</p>
-            )}
-            {card.flavorText && <p className="whitespace-pre-line italic text-muted-foreground">{card.flavorText}</p>}
-          </section>
-        )}
-
-        <section className="max-w-md space-y-2">
-          <h2 className="text-lg font-semibold">Printings</h2>
-          {card.printings.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No printings recorded.</p>
-          ) : (
-            <>
-              <p className="text-sm text-muted-foreground">
-                {card.printings.map((p) => VARIANT_LABEL[p.variant]).join(", ")}
-              </p>
-              <h3 className="pt-2 text-sm font-medium">Copies you own</h3>
-              <Suspense fallback={<Skeleton className="h-24 w-full" />}>
-                <Owned cardName={card.name} printings={card.printings} />
-              </Suspense>
-            </>
+          {(card.description || card.effect || card.flavorText) && (
+            <section className="max-w-prose space-y-3">
+              <SectionHeading>Card text</SectionHeading>
+              {card.description && <p className="whitespace-pre-line leading-relaxed">{card.description}</p>}
+              {card.effect && card.effect !== card.description && (
+                <p className="whitespace-pre-line leading-relaxed">{card.effect}</p>
+              )}
+              {card.flavorText && (
+                <p className="whitespace-pre-line italic leading-relaxed text-muted-foreground">{card.flavorText}</p>
+              )}
+            </section>
           )}
-        </section>
 
-        <Button asChild variant="outline">
-          <Link href="/cards">Back to cards</Link>
-        </Button>
+          <section className="max-w-md space-y-2">
+            <SectionHeading>Printings</SectionHeading>
+            {card.printings.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No printings recorded.</p>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground">
+                  {card.printings.map((p) => VARIANT_LABEL[p.variant]).join(", ")}
+                </p>
+                <h3 className="pt-2 text-sm font-medium">Copies you own</h3>
+                <Suspense fallback={<Skeleton className="h-24 w-full" />}>
+                  <Owned cardName={card.name} printings={card.printings} />
+                </Suspense>
+              </>
+            )}
+          </section>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default function CardPage({ params }: { params: Promise<{ code: string }> }) {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+    <PageShell>
       <Suspense fallback={<Skeleton className="h-96 w-full" />}>
         <CardDetailContent params={params} />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +19,7 @@ export function CardArt({ name, type, faction, imageUrl, isPlaceholder, classNam
   return (
     <div
       className={cn(
-        "relative aspect-[5/7] w-full overflow-hidden rounded-lg border bg-muted",
+        "relative aspect-[5/7] w-full overflow-hidden rounded-lg border border-border bg-muted transition-[border-color,box-shadow] duration-150",
         className,
       )}
     >
@@ -35,7 +36,10 @@ export function CardArt({ name, type, faction, imageUrl, isPlaceholder, classNam
         <div className="flex h-full flex-col items-center justify-center gap-1 p-3 text-center">
           <span className="text-sm font-semibold leading-tight">{name}</span>
           {(type || faction) && (
-            <span className="text-xs text-muted-foreground">{[type, faction].filter(Boolean).join(" · ")}</span>
+            <span className="flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
+              {type && <span>{type}</span>}
+              <DomainBadge domain={faction} />
+            </span>
           )}
         </div>
       )}

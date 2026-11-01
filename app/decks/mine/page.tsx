@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { ImportDeckForm } from "@/components/decks/import-deck-form";
+import { PageHeader, PageShell, SectionHeading } from "@/components/layout/page";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/auth/session";
@@ -12,19 +13,31 @@ async function MyDecks() {
   const mine = await listUserDecks(user.id);
   return (
     <>
-      <div className="flex items-center gap-3">
-        <h1 className="flex-1 text-2xl font-semibold">My decks</h1>
-        <Button asChild>
-          <Link href="/decks/new">New deck</Link>
-        </Button>
-      </div>
+      <PageHeader
+        title="My decks"
+        description="Decks you built or imported."
+        actions={
+          <Button asChild size="sm">
+            <Link href="/decks/new">New deck</Link>
+          </Button>
+        }
+      />
       {mine.length === 0 ? (
-        <p className="mt-6 text-muted-foreground">You have no decks yet.</p>
+        <p className="text-sm text-muted-foreground">
+          You have no decks yet.{" "}
+          <Link href="/decks/new" className="underline underline-offset-4 transition-colors hover:text-foreground">
+            Create one
+          </Link>
+          .
+        </p>
       ) : (
-        <ul className="mt-6 divide-y rounded-lg border">
+        <ul className="divide-y divide-border overflow-hidden rounded-xl border bg-card">
           {mine.map((d) => (
             <li key={d.id} className="flex items-center gap-3 p-4">
-              <Link href={`/decks/${d.id}`} className="min-w-0 flex-1 font-medium hover:underline">
+              <Link
+                href={`/decks/${d.id}`}
+                className="min-w-0 flex-1 truncate font-semibold transition-colors hover:underline"
+              >
                 {d.name}
               </Link>
               <Badge variant={d.isPublic ? "secondary" : "outline"}>{d.isPublic ? "Public" : "Private"}</Badge>
@@ -35,11 +48,9 @@ async function MyDecks() {
           ))}
         </ul>
       )}
-      <section className="mt-10 max-w-2xl">
-        <h2 className="text-lg font-semibold">Import from JSON</h2>
-        <div className="mt-3">
-          <ImportDeckForm />
-        </div>
+      <section className="max-w-2xl space-y-3">
+        <SectionHeading>Import from JSON</SectionHeading>
+        <ImportDeckForm />
       </section>
     </>
   );
@@ -47,10 +58,10 @@ async function MyDecks() {
 
 export default function MyDecksPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
-      <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
+    <PageShell>
+      <Suspense fallback={<p className="text-sm text-muted-foreground">Loading decks…</p>}>
         <MyDecks />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }

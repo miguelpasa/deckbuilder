@@ -4,9 +4,24 @@ import { Suspense } from "react";
 
 import { AdminDeckRow } from "@/components/decks/admin-deck-row";
 import { ImportMetaDeckForm, SyncButton } from "@/components/decks/admin-tools";
+import { PageHeader, PageShell, SectionHeading } from "@/components/layout/page";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { isAdmin, requireUser } from "@/lib/auth/session";
 import { db } from "@/lib/db";
 import { decks, syncRuns } from "@/lib/db/schema";
+
+function SyncStatus({ status }: { status: string }) {
+  if (status === "success") return <Badge variant="success">Success</Badge>;
+  if (status === "failed") {
+    return (
+      <Badge variant="outline" className="border-destructive/50 text-destructive">
+        Failed
+      </Badge>
+    );
+  }
+  return <Badge variant="info">Running</Badge>;
+}
 
 async function AdminContent() {
   const user = await requireUser();
@@ -19,14 +34,18 @@ async function AdminContent() {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold">Admin</h1>
+      <PageHeader
+        title="Admin"
+        description="Catalog and deck tools for administrators."
+        actions={<Badge variant="outline">Admin only</Badge>}
+      />
 
-      <section className="mt-8">
-        <h2 className="text-lg font-semibold">Decks</h2>
+      <section className="space-y-2">
+        <SectionHeading>Decks</SectionHeading>
         {allDecks.length === 0 ? (
-          <p className="mt-2 text-sm text-muted-foreground">No decks.</p>
+          <p className="text-sm text-muted-foreground">No decks.</p>
         ) : (
-          <ul className="mt-2 divide-y rounded-lg border">
+          <ul className="divide-y divide-border rounded-xl border bg-card">
             {allDecks.map((d) => (
               <AdminDeckRow
                 key={d.id}
@@ -44,28 +63,33 @@ async function AdminContent() {
         )}
       </section>
 
-      <section className="mt-8 max-w-2xl">
-        <h2 className="text-lg font-semibold">Import meta deck JSON</h2>
-        <div className="mt-2">
-          <ImportMetaDeckForm />
-        </div>
+      <section className="max-w-2xl space-y-2">
+        <SectionHeading>Import meta deck JSON</SectionHeading>
+        <ImportMetaDeckForm />
       </section>
 
-      <section className="mt-8 max-w-2xl">
-        <h2 className="text-lg font-semibold">Riot catalog</h2>
-        <div className="mt-2">
-          <SyncButton />
-        </div>
-        <h3 className="mt-6 text-sm font-medium">Last 5 sync runs</h3>
+      <section className="max-w-2xl space-y-3">
+        <SectionHeading>Riot catalog</SectionHeading>
+        <p className="text-sm text-muted-foreground">
+          Sync adds and updates cards from the Riot catalog. It never removes cards that Riot no longer lists.
+        </p>
+        <SyncButton />
+        <h3 className="pt-3 text-sm font-medium">Last 5 sync runs</h3>
         {runs.length === 0 ? (
-          <p className="mt-1 text-sm text-muted-foreground">No sync runs yet.</p>
+          <p className="text-sm text-muted-foreground">No sync runs yet.</p>
         ) : (
-          <ul className="mt-1 divide-y rounded-lg border text-sm">
+          <ul className="divide-y divide-border rounded-xl border bg-card text-sm">
             {runs.map((r) => (
-              <li key={r.id} className="p-3">
-                <span className="font-medium">#{r.id}</span> · {r.status} · {r.startedAt.toISOString()}
-                {r.cardCount !== null && ` · ${r.cardCount} cards`}
-                {r.error && <p className="mt-1 break-words text-xs text-muted-foreground">{r.error}</p>}
+              <li key={r.id} className="space-y-1 p-3">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="font-medium tabular-nums">#{r.id}</span>
+                  <SyncStatus status={r.status} />
+                  <span className="tabular-nums text-muted-foreground">{r.startedAt.toISOString()}</span>
+                  {r.cardCount !== null && (
+                    <span className="tabular-nums text-muted-foreground">{r.cardCount} cards</span>
+                  )}
+                </div>
+                {r.error && <p className="break-words text-xs text-destructive">{r.error}</p>}
               </li>
             ))}
           </ul>
@@ -77,10 +101,10 @@ async function AdminContent() {
 
 export default function AdminPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
-      <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
+    <PageShell>
+      <Suspense fallback={<Skeleton className="h-64 w-full" />}>
         <AdminContent />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }

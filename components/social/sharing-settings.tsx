@@ -5,6 +5,8 @@ import { useOptimistic, useState, useSyncExternalStore, useTransition } from "re
 import { Check, Copy, Download, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
+import { SectionHeading } from "@/components/layout/page";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -13,7 +15,7 @@ import { rotateShareToken, setVisibility } from "@/lib/social/actions";
 type Visibility = "PRIVATE" | "LINK" | "PUBLIC";
 
 const OPTIONS: { value: Visibility; label: string; hint: string }[] = [
-  { value: "PRIVATE", label: "Private", hint: "Only you. Nobody can follow you or borrow from you." },
+  { value: "PRIVATE", label: "Private", hint: "Only you. Nobody can follow you or see your cards." },
   { value: "LINK", label: "Anyone with the link", hint: "People who have your link can view and follow you." },
   { value: "PUBLIC", label: "Public", hint: "Anyone can view your collection if they have the link." },
 ];
@@ -73,7 +75,7 @@ export function SharingSettings({ token, visibility }: { token: string; visibili
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <h2 className="text-lg font-medium">Who can see your collection</h2>
+        <SectionHeading>Who can see your collection</SectionHeading>
         <div role="radiogroup" aria-label="Collection visibility" className="grid gap-2 sm:grid-cols-3">
           {OPTIONS.map((o) => (
             <button
@@ -84,29 +86,35 @@ export function SharingSettings({ token, visibility }: { token: string; visibili
               disabled={pending}
               onClick={() => current !== o.value && changeVisibility(o.value)}
               className={cn(
-                "rounded-lg border p-3 text-left text-sm transition-colors disabled:opacity-60",
-                current === o.value ? "border-primary bg-primary/5 ring-1 ring-primary" : "hover:bg-accent",
+                "rounded-xl border p-3 text-left text-sm transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:opacity-60",
+                current === o.value ? "border-primary bg-primary/5 ring-1 ring-primary" : "hover:bg-muted/50",
               )}
             >
-              <div className="font-medium">{o.label}</div>
+              <div className="flex items-center justify-between gap-2 font-medium">
+                {o.label}
+                {current === o.value && <Check className="size-4 text-primary" aria-hidden />}
+              </div>
               <div className="mt-1 text-muted-foreground">{o.hint}</div>
             </button>
           ))}
         </div>
         <p className="text-sm text-muted-foreground">
-          People who follow you can see the cards and quantities in your collection, and the borrow suggestions on
-          their Borrow page use it to show what you could lend. Only card codes, variants and counts are shared.
+          People who follow you can see the cards and quantities in your collection, and their Borrow page uses it
+          to show which cards you have. Only card codes, variants and counts are shared.
           Setting this to Private hides your collection from followers right away.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-medium">Your share link</h2>
+        <div className="flex flex-wrap items-center gap-2">
+          <SectionHeading>Your share link</SectionHeading>
+          <Badge variant={shareable ? "success" : "outline"}>{shareable ? "Shareable" : "Private"}</Badge>
+        </div>
         <div className="flex gap-2">
           <Input readOnly value={url} aria-label="Share link" onFocus={(e) => e.currentTarget.select()} />
           <Button type="button" variant="outline" onClick={copy} disabled={!origin}>
             {copied ? <Check /> : <Copy />}
-            {copied ? "Copied" : "Copy"}
+            <span aria-live="polite">{copied ? "Copied" : "Copy"}</span>
           </Button>
         </div>
         {!shareable && (

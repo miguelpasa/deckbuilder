@@ -24,7 +24,7 @@ export function AdminDeckRow({
 
   return (
     <li className="flex flex-wrap items-center gap-4 p-3 text-sm">
-      <Link href={`/decks/${deck.id}`} className="min-w-0 flex-1 font-medium hover:underline">
+      <Link href={`/decks/${deck.id}`} className="min-w-0 flex-1 font-medium transition-colors hover:underline">
         {deck.name}
         <span className="ml-2 text-xs font-normal text-muted-foreground">
           {deck.system ? "system" : "user"} · {deck.isPublic ? "public" : "private"}

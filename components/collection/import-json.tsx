@@ -88,7 +88,7 @@ export function ImportJson() {
       {error && <p className="text-sm text-destructive">{error}</p>}
 
       {preview && (
-        <div className="space-y-3 rounded-lg border p-4">
+        <div className="space-y-3 rounded-xl border p-4">
           <p className="text-sm">
             <strong>{preview.resolvedQty}</strong> copies across <strong>{preview.resolvedCount}</strong> printings
             can be imported (from {preview.totalLines} lines).
@@ -107,11 +107,11 @@ export function ImportJson() {
           <fieldset className="space-y-1">
             <legend className="mb-1 text-sm font-medium">How to apply</legend>
             <label className="flex items-center gap-2 text-sm">
-              <input type="radio" name="mode" checked={mode === "merge"} onChange={() => setMode("merge")} />
+              <input className="accent-primary" type="radio" name="mode" checked={mode === "merge"} onChange={() => setMode("merge")} />
               Merge (add quantities to my collection)
             </label>
             <label className="flex items-center gap-2 text-sm">
-              <input type="radio" name="mode" checked={mode === "replace"} onChange={() => setMode("replace")} />
+              <input className="accent-primary" type="radio" name="mode" checked={mode === "replace"} onChange={() => setMode("replace")} />
               Replace my collection
             </label>
           </fieldset>

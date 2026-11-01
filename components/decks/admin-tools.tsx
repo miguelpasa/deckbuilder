@@ -41,9 +41,13 @@ export function ImportMetaDeckForm() {
       <Button onClick={submit} disabled={pending || !text.trim()}>
         {pending ? "Importing…" : "Import meta deck"}
       </Button>
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-destructive">
+          {error}
+        </p>
+      )}
       {result?.status === "skipped" && (
-        <p className="text-sm text-destructive">
+        <p role="alert" className="text-sm text-destructive">
           Skipped &quot;{result.name}&quot;: {result.missingCodes.length} unknown card code(s):{" "}
           <span className="font-mono text-xs">{result.missingCodes.join(", ")}</span>
         </p>
@@ -79,7 +83,7 @@ export function SyncButton() {
         </p>
       )}
       {result?.ok === false && (
-        <div role="alert" className="rounded-lg border border-destructive/50 p-3 text-sm">
+        <div role="alert" className="rounded-xl border border-destructive/50 p-3 text-sm">
           <p className="font-medium text-destructive">
             {result.errorName}
             {result.status ? ` (HTTP ${result.status})` : ""}

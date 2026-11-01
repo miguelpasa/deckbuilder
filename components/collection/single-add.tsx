@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
 
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { PlaceholderBadge } from "@/components/cards/card-art";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,7 +74,7 @@ export function SingleAdd() {
     start(async () => {
       const r = await bulkAdd([{ printingId, qty: n }]);
       if (r.ok) {
-        toast.success(`Added ${n} x ${selected.name}`);
+        toast.success(`Added ${n}× ${selected.name}`);
         reset();
       } else toast.error(r.error);
     });
@@ -104,14 +105,13 @@ export function SingleAdd() {
               <li key={r.id}>
                 <button
                   type="button"
-                  className="flex w-full flex-wrap items-center gap-x-2 px-3 py-2 text-left text-sm hover:bg-accent"
+                  className="flex w-full flex-wrap items-center gap-x-2 px-3 py-2 text-left text-sm transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none"
                   onClick={() => choose(r)}
                 >
                   <span className="font-mono text-xs text-muted-foreground">{r.code ?? r.id}</span>
                   <span className="font-medium">{r.name}</span>
-                  <span className="text-xs text-muted-foreground">
-                    {[r.type, r.faction].filter(Boolean).join(" · ")}
-                  </span>
+                  {r.type && <span className="text-xs text-muted-foreground">{r.type}</span>}
+                  <DomainBadge domain={r.faction} />
                   {r.isPlaceholder && <PlaceholderBadge />}
                 </button>
               </li>
@@ -127,7 +127,7 @@ export function SingleAdd() {
       </div>
 
       {selected && (
-        <div className="space-y-4 rounded-lg border p-4">
+        <div className="space-y-4 rounded-xl border p-4">
           <p className="text-sm">
             <span className="font-mono text-xs text-muted-foreground">{selected.code ?? selected.id}</span>{" "}
             <span className="font-semibold">{selected.name}</span>
@@ -142,6 +142,7 @@ export function SingleAdd() {
                 return (
                   <label key={v} className="flex items-center gap-2 text-sm">
                     <input
+                      className="accent-primary"
                       type="radio"
                       name="printing"
                       checked={printingId === p.id}

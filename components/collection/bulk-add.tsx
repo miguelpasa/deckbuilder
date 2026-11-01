@@ -85,7 +85,7 @@ export function BulkAdd() {
           {rows.length === 0 ? (
             <p className="text-sm text-muted-foreground">No card lines found.</p>
           ) : (
-            <div className="overflow-x-auto rounded-lg border">
+            <div className="overflow-x-auto rounded-xl border">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -117,9 +117,9 @@ export function BulkAdd() {
                         {r.status === "error" ? (
                           <span className="text-sm text-destructive">{r.message}</span>
                         ) : r.warning ? (
-                          <span className="text-sm text-amber-600 dark:text-amber-400">{r.warning}</span>
+                          <span className="text-sm text-warning">{r.warning}</span>
                         ) : (
-                          <Badge variant="secondary">OK</Badge>
+                          <Badge variant="success">OK</Badge>
                         )}
                       </TableCell>
                     </TableRow>

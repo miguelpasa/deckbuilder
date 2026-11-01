@@ -64,15 +64,15 @@ export function ImportDeckForm() {
       <Button onClick={submit} disabled={pending || !text.trim()}>
         {pending ? "Importing…" : "Import deck"}
       </Button>
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
       {result && (
-        <div className="rounded-lg border p-3 text-sm">
+        <div className="rounded-xl border bg-card p-3 text-sm">
           <p>
             Imported {result.imported} card line(s), but {result.unknownCodes.length} code(s) are not in the card
             database and were left out:
           </p>
           <p className="mt-1 break-words font-mono text-xs">{result.unknownCodes.join(", ")}</p>
-          <Button asChild size="sm" className="mt-3">
+          <Button asChild size="sm" variant="outline" className="mt-3">
             <Link href={`/decks/${result.deckId}`}>Open the imported deck</Link>
           </Button>
         </div>

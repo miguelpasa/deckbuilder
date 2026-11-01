@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Riftbound Deckbuilder",
-  description: "Riftbound card collection tracker and deck completeness",
+  description: "Track your Riftbound card collection and see how complete each deck is for you.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -32,19 +32,25 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <SiteHeader />
           <div className="flex flex-1 flex-col">{children}</div>
-          <footer className="border-t">
-            <div className="mx-auto w-full max-w-6xl space-y-2 px-4 py-6 text-xs text-muted-foreground">
-              <p>
+          <footer className="border-t border-border">
+            <div className="mx-auto w-full max-w-6xl space-y-3 px-4 py-6 text-xs leading-relaxed text-muted-foreground sm:px-6">
+              <p className="max-w-3xl">
                 Riftbound Deckbuilder isn&apos;t endorsed by Riot Games and doesn&apos;t reflect the
                 views or opinions of Riot Games or anyone officially involved in producing or
                 managing Riot Games properties. Riot Games, and all associated properties are
                 trademarks or registered trademarks of Riot Games, Inc.
               </p>
               <p className="flex gap-4">
-                <Link href="/legal/terms" className="hover:text-foreground">
+                <Link
+                  href="/legal/terms"
+                  className="rounded-sm outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                >
                   Terms
                 </Link>
-                <Link href="/legal/privacy" className="hover:text-foreground">
+                <Link
+                  href="/legal/privacy"
+                  className="rounded-sm outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                >
                   Privacy
                 </Link>
               </p>

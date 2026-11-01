@@ -1,34 +1,37 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { Library, Search, Users } from "lucide-react";
 
+import { Dashboard, DashboardSkeleton } from "@/components/dashboard/dashboard";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getCurrentUser } from "@/lib/auth/session";
 
 const features = [
   {
     icon: Library,
     title: "Track your collection",
     description:
-      "Log the Riftbound cards you own, keep quantities up to date, and see your whole collection in one place.",
+      "Record the Riftbound cards you own and how many copies of each. Your whole collection is on one page.",
   },
   {
     icon: Search,
     title: "See what you're missing",
     description:
-      "Compare your collection against featured tournament decklists and see how close you are to building each one.",
+      "Compare your collection to featured tournament decklists and see how many cards each deck still needs.",
   },
   {
     icon: Users,
     title: "Borrow from friends",
     description:
-      "Share your collection by link or JSON file, and find out which missing cards your friends could lend you.",
+      "Share your collection by link or JSON file. The app shows which missing cards your friends could lend you.",
   },
 ];
 
 const steps = [
   {
     title: "Sign in",
-    description: "Continue with Google or GitHub. It takes a few seconds.",
+    description: "Use your Google or GitHub account.",
   },
   {
     title: "Add your cards",
@@ -37,19 +40,36 @@ const steps = [
   {
     title: "Compare and build",
     description:
-      "See which featured decks you can finish, what's missing, and which cards friends can lend.",
+      "See which featured decks you can finish, which cards are missing, and which of those friends can lend.",
   },
 ];
+
+async function HomeContent() {
+  const user = await getCurrentUser();
+  if (user) return <Dashboard user={user} />;
+  return <Landing />;
+}
 
 export default function HomePage() {
   return (
     <div className="flex min-h-full flex-1 flex-col bg-background text-foreground">
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 sm:px-6">
-        <section className="flex flex-col items-center gap-6 py-16 text-center sm:py-24">
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+        <Suspense fallback={<DashboardSkeleton />}>
+          <HomeContent />
+        </Suspense>
+      </main>
+    </div>
+  );
+}
+
+function Landing() {
+  return (
+    <>
+        <section className="flex flex-col items-start gap-5 py-14 sm:py-20">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             Riftbound Deckbuilder
           </h1>
-          <p className="max-w-xl text-lg leading-8 text-muted-foreground">
+          <p className="max-w-xl text-base leading-7 sm:text-lg text-muted-foreground">
             Track your Riftbound collection, see how close you are to featured
             tournament decklists, and borrow missing cards from friends.
           </p>
@@ -91,7 +111,7 @@ export default function HomePage() {
         >
           <h2
             id="how-it-works-heading"
-            className="mb-8 text-center text-2xl font-semibold tracking-tight"
+            className="mb-8 text-xl font-semibold tracking-tight"
           >
             How it works
           </h2>
@@ -109,23 +129,6 @@ export default function HomePage() {
             ))}
           </ol>
         </section>
-      </main>
-
-      <footer className="border-t">
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>
-            A free, fan-made project. Not endorsed by Riot Games.
-          </p>
-          <nav className="flex gap-4">
-            <Link href="/legal/terms" className="hover:text-foreground">
-              Terms
-            </Link>
-            <Link href="/legal/privacy" className="hover:text-foreground">
-              Privacy
-            </Link>
-          </nav>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

@@ -11,15 +11,15 @@ export default function TermsPage() {
       <h1>Terms of Service</h1>
       <p>
         These terms explain the rules for using Riftbound Deckbuilder (the
-        &quot;app&quot;, &quot;we&quot;, or &quot;us&quot;). The short version:
-        the app is free, we want it to be useful to Riftbound players, and we
-        ask you to use it respectfully. Please read the full terms below.
+        &quot;app&quot;, &quot;we&quot;, or &quot;us&quot;). In short, the app is
+        free, it is for Riftbound players, and we ask you to use it
+        respectfully. The full terms follow.
       </p>
 
       <h2>1. Accepting these terms</h2>
       <p>
         By creating an account or using the app, you agree to these terms. If
-        you don&apos;t agree, please don&apos;t use the app.
+        you don&apos;t agree, don&apos;t use the app.
       </p>
 
       <h2>2. What the app is</h2>

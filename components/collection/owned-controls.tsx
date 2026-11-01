@@ -10,7 +10,7 @@ type P = { printingId: number; variant: Variant; quantity: number };
 export function OwnedControls({ cardName, printings }: { cardName: string; printings: P[] }) {
   const [qty, setQty] = useState(() => Object.fromEntries(printings.map((p) => [p.printingId, p.quantity])));
   return (
-    <ul className="divide-y rounded-lg border">
+    <ul className="divide-y rounded-xl border">
       {printings.map((p) => (
         <li key={p.printingId} className="flex items-center justify-between gap-3 px-3 py-2">
           <span className="text-sm font-medium">{VARIANT_LABEL[p.variant]}</span>

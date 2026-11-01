@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import { PageHeader, PageShell } from "@/components/layout/page";
 import { AddTabs } from "@/components/collection/add-tabs";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { requireUser } from "@/lib/auth/session";
 
@@ -15,16 +17,20 @@ async function AddContent() {
 
 export default function AddCardsPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl flex-1 space-y-6 px-4 py-8">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h1 className="text-2xl font-semibold">Add cards</h1>
-        <Link href="/collection" className="text-sm text-muted-foreground hover:text-foreground">
-          Back to collection
-        </Link>
+    <PageShell>
+      <PageHeader
+        title="Add cards"
+        actions={
+          <Button asChild variant="ghost">
+            <Link href="/collection">Back to collection</Link>
+          </Button>
+        }
+      />
+      <div className="max-w-2xl">
+        <Suspense fallback={<Skeleton className="h-64 w-full" />}>
+          <AddContent />
+        </Suspense>
       </div>
-      <Suspense fallback={<Skeleton className="h-64 w-full" />}>
-        <AddContent />
-      </Suspense>
-    </main>
+    </PageShell>
   );
 }

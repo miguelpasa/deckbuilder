@@ -20,13 +20,13 @@ export type ImportedItem = { id: string; label: string; importedAt: string; card
 
 function PreviewSummary({ preview }: { preview: ImportPreview }) {
   return (
-    <div className="rounded-md border bg-muted/40 p-3 text-sm">
+    <div className="rounded-lg border bg-muted/40 p-3 text-sm">
       <p>
         {preview.cardCount} cards ({preview.distinctCards} distinct) recognised
         {preview.owner ? ` from ${preview.owner}` : ""}.
       </p>
       {preview.unknownCodes.length > 0 && (
-        <p className="mt-1 text-amber-700 dark:text-amber-400">
+        <p className="mt-1 text-warning">
           {preview.unknownCodes.length} unknown code{preview.unknownCodes.length === 1 ? "" : "s"} will be skipped:{" "}
           {preview.unknownCodes.slice(0, 20).join(", ")}
           {preview.unknownCodes.length > 20 ? ", …" : ""}
@@ -172,7 +172,7 @@ function ImportedRowItem({ item }: { item: ImportedItem }) {
   }
 
   return (
-    <li className="space-y-3 rounded-lg border p-3">
+    <li className="space-y-3 rounded-xl border p-3">
       <div className="flex flex-wrap items-center gap-2">
         {editing ? (
           <>
@@ -226,7 +226,7 @@ function ImportedRowItem({ item }: { item: ImportedItem }) {
 
 export function ImportedList({ items }: { items: ImportedItem[] }) {
   if (items.length === 0) {
-    return <p className="text-sm text-muted-foreground">No snapshots yet.</p>;
+    return <p className="text-sm text-muted-foreground">No snapshots yet. Upload a file above to add one.</p>;
   }
   return (
     <ul className="space-y-2">

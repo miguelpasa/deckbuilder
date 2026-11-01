@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import { PageHeader, PageShell } from "@/components/layout/page";
 import { CollectionTable } from "@/components/collection/collection-table";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,7 +17,7 @@ async function CollectionContent() {
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed p-10 text-center">
+      <div className="rounded-xl border border-dashed p-10 text-center">
         <p className="mb-4 text-muted-foreground">Your collection is empty.</p>
         <Button asChild>
           <Link href="/collection/add">Add cards</Link>
@@ -29,23 +30,26 @@ async function CollectionContent() {
 
 export default function CollectionPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 space-y-6 px-4 py-8">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h1 className="text-2xl font-semibold">Your collection</h1>
-        <div className="flex gap-2">
-          <Button asChild>
-            <Link href="/collection/add">Add cards</Link>
-          </Button>
-          <Button asChild variant="outline">
-            <a href="/api/collection/export" download="riftbound-collection.json">
-              Export JSON
-            </a>
-          </Button>
-        </div>
-      </div>
+    <PageShell>
+      <PageHeader
+        title="Your collection"
+        description="Every card you own, by printing."
+        actions={
+          <>
+            <Button asChild variant="outline">
+              <a href="/api/collection/export" download="riftbound-collection.json">
+                Export JSON
+              </a>
+            </Button>
+            <Button asChild>
+              <Link href="/collection/add">Add cards</Link>
+            </Button>
+          </>
+        }
+      />
       <Suspense fallback={<Skeleton className="h-64 w-full" />}>
         <CollectionContent />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }

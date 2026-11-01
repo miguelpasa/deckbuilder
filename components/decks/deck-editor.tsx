@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { toast } from "sonner";
 
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -193,8 +194,8 @@ export function DeckEditor({
           <Label htmlFor="deck-public">Public (visible on the decks page)</Label>
         </div>
 
-        <section className="space-y-3 rounded-lg border p-4">
-          <h2 className="font-medium">Add cards</h2>
+        <section className="space-y-3 rounded-xl border bg-card p-4">
+          <h2 className="text-sm font-semibold">Add cards</h2>
           <Input
             placeholder="Search by name or code (e.g. OGN-042)"
             value={query}
@@ -209,19 +210,20 @@ export function DeckEditor({
           {query.trim() && !searching && visibleHits.length === 0 && (
             <p className="text-sm text-muted-foreground">No cards found.</p>
           )}
-          <ul className="divide-y text-sm">
+          <ul className="divide-y divide-border text-sm">
             {visibleHits.map((h) => {
               const zone = defaultZone(h);
               return (
                 <li key={h.id} className="flex flex-wrap items-center gap-2 py-2">
                   <div className="min-w-0 flex-1">
-                    <span className="font-medium">{h.name}</span>
-                    <span className="ml-2 text-xs text-muted-foreground">
-                      {[h.code, h.type, h.faction].filter(Boolean).join(" · ")}
-                      {` · own ${ownedQty[h.id] ?? 0}`}
+                    <span className="font-semibold">{h.name}</span>
+                    <span className="ml-2 inline-flex flex-wrap items-center gap-1.5 align-middle text-xs text-muted-foreground">
+                      <span>{[h.code, h.type].filter(Boolean).join(" · ")}</span>
+                      <DomainBadge domain={h.faction} />
+                      <span className="tabular-nums">{`own ${ownedQty[h.id] ?? 0}`}</span>
                     </span>
                   </div>
-                  <Button size="xs" onClick={() => add(h, zone)}>
+                  <Button size="xs" variant="outline" onClick={() => add(h, zone)}>
                     <Plus /> {ZONE_TITLES[zone]}
                   </Button>
                   {zone === "MAIN" && (
@@ -237,17 +239,20 @@ export function DeckEditor({
       </div>
 
       <div className="space-y-4">
-        <section className="rounded-lg border p-4" aria-label="Validation">
-          <h2 className="font-medium">
-            Validation{" "}
-            <Badge variant={validation.valid ? "secondary" : "destructive"}>
+        <section className="space-y-2 rounded-xl border bg-card p-4" aria-label="Validation">
+          <h2 className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+            Validation
+            <Badge variant={validation.valid ? "success" : "warning"}>
               {validation.valid ? "Valid" : "Not valid yet"}
             </Badge>
           </h2>
+          {!validation.valid && (
+            <p className="text-xs text-muted-foreground">These checks are advisory. You can save the deck as it is.</p>
+          )}
           {validation.issues.length > 0 && (
-            <ul className="mt-2 space-y-1 text-sm">
+            <ul className="space-y-1 text-sm">
               {validation.issues.map((i, idx) => (
-                <li key={idx} className={i.severity === "error" ? "text-destructive" : "text-muted-foreground"}>
+                <li key={idx} className={i.severity === "error" ? "text-destructive" : "text-warning"}>
                   {i.severity === "error" ? "Error" : "Warning"}: {i.message}
                 </li>
               ))}
@@ -259,14 +264,14 @@ export function DeckEditor({
           const rows = entries.filter((e) => e.zone === zone);
           const total = rows.reduce((a, e) => a + e.quantity, 0);
           return (
-            <section key={zone}>
-              <h3 className="text-sm font-medium">
-                {ZONE_TITLES[zone]} <span className="text-muted-foreground">({total})</span>
+            <section key={zone} className="space-y-1">
+              <h3 className="text-sm font-semibold">
+                {ZONE_TITLES[zone]} <span className="font-normal text-muted-foreground tabular-nums">({total})</span>
               </h3>
               {rows.length === 0 ? (
                 <p className="text-xs text-muted-foreground">Empty</p>
               ) : (
-                <ul className="mt-1 divide-y rounded-lg border text-sm">
+                <ul className="divide-y divide-border overflow-hidden rounded-xl border bg-card text-sm">
                   {rows.map((e) => (
                     <li key={`${e.card.id}-${e.zone}`} className="flex items-center gap-2 px-3 py-1.5">
                       <span className="min-w-0 flex-1 truncate">
@@ -278,7 +283,7 @@ export function DeckEditor({
                           <Button size="icon-xs" variant="outline" aria-label="Decrease" onClick={() => step(e, -1)}>
                             <Minus />
                           </Button>
-                          <span className="w-5 text-center tabular-nums">{e.quantity}</span>
+                          <span className="w-6 text-center tabular-nums">{e.quantity}</span>
                           <Button size="icon-xs" variant="outline" aria-label="Increase" onClick={() => step(e, 1)}>
                             <Plus />
                           </Button>
@@ -295,7 +300,7 @@ export function DeckEditor({
           );
         })}
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Button onClick={save} disabled={pending || !name.trim()}>
             {pending ? "Saving…" : "Save deck"}
           </Button>

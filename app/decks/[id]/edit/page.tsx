@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { DeckEditor, type EditorEntry } from "@/components/decks/deck-editor";
+import { PageHeader, PageShell } from "@/components/layout/page";
 import { requireUser } from "@/lib/auth/session";
 import { getCardsByIds, getOwnedQtyByCardId, loadDecks } from "@/lib/data/queries";
 import { eq } from "drizzle-orm";
@@ -40,29 +41,30 @@ async function EditDeck({ params }: { params: Promise<{ id: string }> }) {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold">Edit deck</h1>
-      <div className="mt-6">
-        <DeckEditor
-          deckId={deck.id}
-          ownedQty={owned}
-          initial={{
-            name: deck.name,
-            description: deck.description ?? "",
-            isPublic: deck.isPublic,
-            entries,
-          }}
-        />
-      </div>
+      <PageHeader
+        title="Edit deck"
+        description="You can save at any time, even while the deck has validation problems."
+      />
+      <DeckEditor
+        deckId={deck.id}
+        ownedQty={owned}
+        initial={{
+          name: deck.name,
+          description: deck.description ?? "",
+          isPublic: deck.isPublic,
+          entries,
+        }}
+      />
     </>
   );
 }
 
 export default function EditDeckPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
-      <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
+    <PageShell>
+      <Suspense fallback={<p className="text-sm text-muted-foreground">Loading deck…</p>}>
         <EditDeck params={params} />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }

@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+import { DomainBadge } from "@/components/cards/domain-badge";
 import { CompletenessBar } from "@/components/decks/completeness-bar";
 import { DeckActions } from "@/components/decks/deck-actions";
+import { PageHeader, PageShell, SectionHeading } from "@/components/layout/page";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -23,7 +25,7 @@ const ZONE_TITLES: Record<DeckZone, string> = {
 
 function CardLink({ card }: { card: Card }) {
   return card.publicCode ? (
-    <Link href={`/cards/${card.publicCode}`} className="hover:underline">
+    <Link href={`/cards/${card.publicCode}`} className="transition-colors hover:underline">
       {card.name}
     </Link>
   ) : (
@@ -75,41 +77,42 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
         .join("\n")
     : null;
 
+  const errorCount = validation.issues.filter((i) => i.severity === "error").length;
+
   return (
     <>
-      <div className="flex flex-wrap items-start gap-3">
-        <div className="min-w-0 flex-1">
-          <h1 className="text-2xl font-semibold">{deck.name}</h1>
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            {deck.isFeatured && <Badge>Featured</Badge>}
-            {deck.source === "META" && <Badge variant="secondary">Meta</Badge>}
-            {!deck.isPublic && <Badge variant="outline">Private</Badge>}
-            {event && <span>{event}</span>}
-          </div>
-          {deck.description && <p className="mt-3 max-w-prose text-sm">{deck.description}</p>}
-        </div>
-        {isOwner && (
-          <Button asChild variant="outline" size="sm">
-            <Link href={`/decks/${deck.id}/edit`}>Edit</Link>
-          </Button>
-        )}
+      <PageHeader
+        title={deck.name}
+        description={deck.description || undefined}
+        actions={
+          isOwner ? (
+            <Button asChild variant="outline" size="sm">
+              <Link href={`/decks/${deck.id}/edit`}>Edit</Link>
+            </Button>
+          ) : undefined
+        }
+      />
+
+      <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+        {deck.isFeatured && <Badge variant="outline">Featured</Badge>}
+        {deck.source === "META" && <Badge variant="secondary">Meta</Badge>}
+        {!deck.isPublic && <Badge variant="outline">Private</Badge>}
+        {event && <span>{event}</span>}
       </div>
 
-      <div className="mt-4">
-        <DeckActions deckId={deck.id} deckText={deckText} missingText={missingText} />
-      </div>
+      <DeckActions deckId={deck.id} deckText={deckText} missingText={missingText} />
 
-      <section className="mt-6 rounded-lg border p-4" aria-label="Validation">
-        <h2 className="font-medium">
-          {validation.valid ? "Deck is valid" : "Deck has problems"}{" "}
-          <Badge variant={validation.valid ? "secondary" : "destructive"}>
-            {validation.valid ? "Valid" : `${validation.issues.filter((i) => i.severity === "error").length} error(s)`}
+      <section className="space-y-2 rounded-xl border bg-card p-4" aria-label="Validation">
+        <h2 className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+          {validation.valid ? "Deck is valid" : "Deck has problems"}
+          <Badge variant={validation.valid ? "success" : errorCount > 0 ? "destructive" : "warning"}>
+            {validation.valid ? "Valid" : `${errorCount} ${errorCount === 1 ? "error" : "errors"}`}
           </Badge>
         </h2>
         {validation.issues.length > 0 && (
-          <ul className="mt-2 space-y-1 text-sm">
+          <ul className="space-y-1 text-sm">
             {validation.issues.map((i, idx) => (
-              <li key={idx} className={i.severity === "error" ? "text-destructive" : "text-muted-foreground"}>
+              <li key={idx} className={i.severity === "error" ? "text-destructive" : "text-warning"}>
                 {i.severity === "error" ? "Error" : "Warning"}: {i.message}
               </li>
             ))}
@@ -118,42 +121,43 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
       </section>
 
       {completeness ? (
-        <section className="mt-4 grid gap-4 rounded-lg border p-4 sm:grid-cols-2" aria-label="Completeness">
+        <section className="grid gap-4 rounded-xl border bg-card p-4 sm:grid-cols-2" aria-label="Completeness">
           <div>
             <CompletenessBar percent={completeness.totals.percent} label="Complete for your collection" />
-            <p className="mt-1 text-xs text-muted-foreground">
-              {completeness.totals.ownedCopies} of {completeness.totals.neededCopies} copies owned ·{" "}
+            <p className="mt-1.5 text-xs text-muted-foreground tabular-nums">
+              {completeness.totals.ownedCopies} of {completeness.totals.neededCopies} copies owned,{" "}
               {completeness.totals.missingCopies} missing (sideboard not counted)
             </p>
           </div>
           {borrowable && (
             <div>
               <CompletenessBar percent={borrowable.percentWithFriends} label="With friends" />
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="mt-1.5 text-xs text-muted-foreground tabular-nums">
                 Friends and imports could cover {borrowable.coverableCopies} of {borrowable.missingCopies} missing copies.
               </p>
             </div>
           )}
         </section>
       ) : (
-        <p className="mt-4 text-sm text-muted-foreground">
-          <Link href="/auth/sign-in" className="underline">
+        <p className="text-sm text-muted-foreground">
+          <Link href="/auth/sign-in" className="underline underline-offset-4 transition-colors hover:text-foreground">
             Sign in
           </Link>{" "}
           to see which cards you own and what is missing.
         </p>
       )}
 
-      <div className="mt-6 grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {DECK_ZONES.map((zone) => {
           const rows = sortedEntries(zone);
           if (rows.length === 0) return null;
           return (
-            <section key={zone} aria-label={ZONE_TITLES[zone]}>
-              <h2 className="font-medium">
-                {ZONE_TITLES[zone]} <span className="text-muted-foreground">({zoneCount(zone)})</span>
+            <section key={zone} aria-label={ZONE_TITLES[zone]} className="space-y-2">
+              <h2 className="text-sm font-semibold">
+                {ZONE_TITLES[zone]}{" "}
+                <span className="font-normal text-muted-foreground tabular-nums">({zoneCount(zone)})</span>
               </h2>
-              <ul className="mt-2 divide-y rounded-lg border text-sm">
+              <ul className="divide-y divide-border overflow-hidden rounded-xl border bg-card text-sm">
                 {rows.map((e) => {
                   const c = cards.get(e.cardId)!;
                   const comp = zone === "SIDEBOARD" ? undefined : compByCard.get(e.cardId);
@@ -164,6 +168,7 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
                         <CardLink card={c} />
                         {c.publicCode && <span className="ml-2 text-xs text-muted-foreground">{c.publicCode}</span>}
                       </span>
+                      <DomainBadge domain={c.faction} />
                       {comp && (
                         <span
                           className={
@@ -187,21 +192,22 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
       </div>
 
       {completeness && (
-        <section className="mt-8" aria-label="Missing cards">
-          <h2 className="text-lg font-semibold">Missing cards</h2>
+        <section className="space-y-3" aria-label="Missing cards">
+          <SectionHeading>Missing cards</SectionHeading>
           {rarityGroups.length === 0 ? (
-            <p className="mt-2 text-sm text-muted-foreground">You own everything in this deck.</p>
+            <p className="text-sm text-muted-foreground">You own everything in this deck.</p>
           ) : (
-            <div className="mt-2 grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2">
               {rarityGroups.map(([rarity, rows]) => (
                 <div key={rarity}>
                   <h3 className="text-sm font-medium">
-                    {rarity} <span className="text-muted-foreground">({rows.reduce((a, r) => a + r.missing, 0)})</span>
+                    {rarity}{" "}
+                    <span className="text-muted-foreground tabular-nums">({rows.reduce((a, r) => a + r.missing, 0)})</span>
                   </h3>
-                  <ul className="mt-1 text-sm">
+                  <ul className="mt-1 space-y-0.5 text-sm">
                     {rows.map((r) => (
                       <li key={r.cardId}>
-                        {r.missing}× <CardLink card={r.card} />
+                        <span className="tabular-nums">{r.missing}×</span> <CardLink card={r.card} />
                       </li>
                     ))}
                   </ul>
@@ -213,12 +219,12 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
       )}
 
       {borrowable && (
-        <section className="mt-8" aria-label="Borrow from friends">
-          <h2 className="text-lg font-semibold">Borrow from friends</h2>
+        <section className="space-y-3" aria-label="Borrow from friends">
+          <SectionHeading>Borrow from friends</SectionHeading>
           {borrowable.cards.length === 0 ? (
-            <p className="mt-2 text-sm text-muted-foreground">Nothing to borrow.</p>
+            <p className="text-sm text-muted-foreground">Nothing to borrow.</p>
           ) : (
-            <ul className="mt-2 divide-y rounded-lg border text-sm">
+            <ul className="divide-y divide-border overflow-hidden rounded-xl border bg-card text-sm">
               {borrowable.cards.map((b) => {
                 const c = cards.get(b.cardId);
                 if (!c) return null;
@@ -228,7 +234,7 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
                       <span className="font-medium">
                         <CardLink card={c} />
                       </span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground tabular-nums">
                         need {b.missing}, can cover {b.coverable}
                       </span>
                     </div>
@@ -252,15 +258,16 @@ async function DeckContent({ params }: { params: Promise<{ id: string }> }) {
 
 export default function DeckPage({ params }: { params: Promise<{ id: string }> }) {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
-      <p className="mb-4 text-sm">
-        <Link href="/decks" className="text-muted-foreground hover:text-foreground">
-          ← All decks
-        </Link>
-      </p>
-      <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
+    <PageShell>
+      <Link
+        href="/decks"
+        className="inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        ← All decks
+      </Link>
+      <Suspense fallback={<p className="text-sm text-muted-foreground">Loading deck…</p>}>
         <DeckContent params={params} />
       </Suspense>
-    </main>
+    </PageShell>
   );
 }
